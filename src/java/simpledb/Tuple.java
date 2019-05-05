@@ -119,4 +119,23 @@ public class Tuple implements Serializable {
             allfield.add(new IntField(0));
         // some code goes here
     }
+
+    public boolean equals(Object o) {
+        // some code goes here
+        Tuple td;
+        try {
+            td = (Tuple) o;
+        }
+        catch (Exception e) {
+            return  false;
+        }
+        if (td == null)
+            return false;
+        if (!td.tupleDesc.equals(this.tupleDesc))
+            return false;
+        for (int i = 0; i < this.allfield.size(); ++i)
+            if (!this.getField(i).equals(td.getField(i)))
+                return false;
+        return true;
+    }
 }
